@@ -1,0 +1,32 @@
+{
+  "name": "iterators.js",
+  "version": "0.1.0",
+  "description": "Useful functional iterators",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "chai": "*"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nishanths/iterators.js.git"
+  },
+  "keywords": [
+    "array",
+    "iterate",
+    "iterator",
+    "functional"
+  ],
+  "author": "Nishanth Shanmugham <nishanth.gerrard@gmail.com> (http://nishanths.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nishanths/iterators.js/issues"
+  },
+  "homepage": "https://github.com/nishanths/iterators.js#readme"
+}
