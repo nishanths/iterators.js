@@ -2,7 +2,7 @@
   "name": "iterators.js",
   "version": "0.1.0",
   "description": "Useful functional iterators",
-  "main": "index.js",
+  "main": "./lib/iterators.js",
   "directories": {
     "test": "test"
   },

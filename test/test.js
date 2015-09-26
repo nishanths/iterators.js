@@ -1,11 +1,12 @@
 const chai = require('chai');
-const itr = require('../index.js');
+const itr = require('../lib/iterators.js');
 
 const assert = chai.assert;
 const expect = chai.expect;
 
 const cycle = itr.cycle;
 const distinct = itr.distinct;
+const groupBy = itr.groupBy;
 const repeat = itr.repeat;
 const cartesianProduct = itr.cartesianProduct;
 const slices = itr.slices;
@@ -41,6 +42,24 @@ describe('cartesianProduct()', function () {
         });
 
         expect([3,4,6,8]).to.eql(arr);
+    });
+});
+
+describe('groupBy()', function () {
+    it('group elements that share the same result from applying the function', function () {
+        var arr = groupBy(
+            ['abc', 'foo', 'bar', 'gooey', 'gui', 'boo', 'foo'], 
+            function(s) { 
+                return s.charAt(0).toLowerCase() 
+            }
+        );
+
+        expect([
+            [ 'abc' ],
+            [ 'foo', 'foo' ],
+            [ 'bar', 'boo' ],
+            [ 'gooey', 'gui' ]
+        ]).to.eql(arr);
     });
 });
 
