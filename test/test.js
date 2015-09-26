@@ -1,21 +1,23 @@
-var chai = require('chai');
-var itr = require('../index.js');
+const chai = require('chai');
+const itr = require('../index.js');
 
-var assert = chai.assert;
-var expect = chai.expect;
+const assert = chai.assert;
+const expect = chai.expect;
 
-var slices = itr.slices;
-var product = itr.product;
-var cycle = itr.cycle;
+const cycle = itr.cycle;
+const slices = itr.slices;
+const repeat = itr.repeat;
+const product = itr.product;
+const takeNth = itr.takeNth;
 
-describe('slices()', function () {
-    it('array slices at the right intervals', function () {
+describe('cycle()', function () {
+    it('cycle through the array', function () {
         var arr = [];
-        slices([1,2,3,4,5,6], 2, function(slice) {
-            arr.push(slice);
+        cycle([1,2,3], 5, function(item) {
+            arr.push(item);
         });
 
-        expect([[1,2],[3,4],[5,6]]).to.eql(arr);
+        expect([1,2,3,1,2]).to.eql(arr);
     });
 });
 
@@ -30,14 +32,35 @@ describe('product()', function () {
     });
 });
 
-describe('cycle()', function () {
-    it('cycle through the array', function () {
+describe('repeat()', function() {
+    it('repeat the correct number of times', function() {
         var arr = [];
-        cycle([1,2,3], 5, function(item) {
-            arr.push(item);
+        repeat(5, function() {
+            arr.push(42);
         });
 
-        expect([1,2,3,1,2]).to.eql(arr);
+        expect([42,42,42,42,42]).to.eql(arr);
     });
 });
 
+describe('slices()', function () {
+    it('array slices at the right intervals', function () {
+        var arr = [];
+        slices([1,2,3,4,5,6], 2, function(slice) {
+            arr.push(slice);
+        });
+
+        expect([[1,2],[3,4],[5,6]]).to.eql(arr);
+    });
+});
+
+describe('takeNth()', function() {
+    it('every nth element', function() {
+        var arr = [];
+        takeNth([1,2,3,4,5], 2, function(item) {
+            arr.push(item);
+        });
+
+        expect([2,4]).to.eql(arr);
+    });
+});
