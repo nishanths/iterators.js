@@ -7,7 +7,7 @@ const expect = chai.expect;
 const cycle = itr.cycle;
 const distinct = itr.distinct;
 const repeat = itr.repeat;
-const product = itr.product;
+const cartesianProduct = itr.cartesianProduct;
 const slices = itr.slices;
 const takeNth = itr.takeNth;
 
@@ -33,10 +33,10 @@ describe('distinct()', function() {
     })
 });
 
-describe('product()', function () {
+describe('cartesianProduct()', function () {
     it('cartesian product pairs', function () {
         var arr = [];
-        product([1,2], [3,4], function(a,b) {
+        cartesianProduct([1,2], [3,4], function(a,b) {
             arr.push(a*b);
         });
 
