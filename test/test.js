@@ -5,9 +5,10 @@ const assert = chai.assert;
 const expect = chai.expect;
 
 const cycle = itr.cycle;
-const slices = itr.slices;
+const distinct = itr.distinct;
 const repeat = itr.repeat;
 const product = itr.product;
+const slices = itr.slices;
 const takeNth = itr.takeNth;
 
 describe('cycle()', function () {
@@ -19,6 +20,17 @@ describe('cycle()', function () {
 
         expect([1,2,3,1,2]).to.eql(arr);
     });
+});
+
+describe('distinct()', function() {
+    it('iterates over unencountered elements', function(){
+        var arr = [];
+        distinct([1,1,2,3], function(item) {
+            arr.push(item);
+        });
+
+        expect([1,2,3]).to.eql(arr);
+    })
 });
 
 describe('product()', function () {
