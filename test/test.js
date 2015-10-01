@@ -48,7 +48,7 @@ describe('cartesianProduct()', function () {
 describe('groupBy()', function () {
     it('group elements that share the same result from applying the function', function () {
         var arr = groupBy(
-            ['abc', 'foo', 'bar', 'gooey', 'gui', 'boo', 'foo'], 
+            ['abc', 'foo', 'bar', 'gooey', 'gui', 'boo', 'Foo'], 
             function(s) { 
                 return s.charAt(0).toLowerCase() 
             }
@@ -56,7 +56,7 @@ describe('groupBy()', function () {
 
         expect([
             [ 'abc' ],
-            [ 'foo', 'foo' ],
+            [ 'foo', 'Foo' ],
             [ 'bar', 'boo' ],
             [ 'gooey', 'gui' ]
         ]).to.eql(arr);
