@@ -7,8 +7,9 @@
     "test": "test"
   },
   "devDependencies": {
-    "mocha": "*",
-    "chai": "*"
+    "chai": "*",
+    "coveralls": "^2.11.4",
+    "mocha": "*"
   },
   "scripts": {
     "test": "mocha"
