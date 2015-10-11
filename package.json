@@ -9,7 +9,8 @@
   "devDependencies": {
     "chai": "*",
     "coveralls": "^2.11.4",
-    "mocha": "*"
+    "mocha": "*",
+    "mocha-lcov-reporter": "^1.0.0"
   },
   "scripts": {
     "test": "mocha"
