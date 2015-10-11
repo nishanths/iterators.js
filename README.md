@@ -4,7 +4,7 @@ Useful functional iterators.
 
 Inspired by [JuliaLang/Iterators.jl](https://github.com/JuliaLang/Iterators.jl). 
 
-![npm ver](https://img.shields.io/npm/v/iterators.js.svg) ![downloads total](https://img.shields.io/npm/dt/iterators.js.svg) ![travis ci](https://img.shields.io/travis/nishanths/iterators.js.svg) ![license](https://img.shields.io/npm/l/iterators.js.svg)
+[![npm ver](https://img.shields.io/npm/v/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![downloads total](https://img.shields.io/npm/dm/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![downloads total](https://img.shields.io/npm/dt/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![travis ci](https://img.shields.io/travis/nishanths/iterators.js.svg)](https://travis-ci.org/nishanths/iterators.js) [![license](https://img.shields.io/npm/l/iterators.js.svg)](https://github.com/nishanths/iterators.js/blob/master/LICENSE)
 
 iterators.js has no dependencies. Tests are available in the `tests/` directory. Run `npm test` or `mocha` to execute tests.
 
