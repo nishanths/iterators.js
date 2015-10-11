@@ -4,6 +4,8 @@ Useful functional iterators.
 
 Inspired by [JuliaLang/Iterators.jl](https://github.com/JuliaLang/Iterators.jl). 
 
+![npm ver](https://img.shields.io/npm/v/iterators.js.svg) ![downloads total](https://img.shields.io/npm/dt/iterators.js.svg) ![travis ci](https://img.shields.io/travis/nishanths/iterators.js.svg) ![license](https://img.shields.io/npm/l/iterators.js.svg)
+
 iterators.js has no dependencies. Tests are available in the `tests/` directory. Run `npm test` or `mocha` to execute tests.
 
 **Warning:** iterators.js requires some ES6 features such as [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set).
