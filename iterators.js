@@ -4,9 +4,9 @@
 
 /**
  * Repeat a function call n times while cycling through an array.
- * The callback function receives 3 parameters: the element, the index of 
+ * The callback function receives 3 parameters: the element, the index of
  * the element, and the original array.
- * 
+ *
  * @param  {Array}    arr      Array to cycle through
  * @param  {Number}   n        Number of times to call the function while cycling over elements
  * @param  {Function} fn       Function to call
@@ -25,12 +25,12 @@ var cycle = function(arr, n, fn, context) {
 
 /**
  * Call a function for each element in an array
- * only if the element has not been seen before. 
+ * only if the element has not been seen before.
  * Two elements are considered the same using the Same-value equality algorithm.
  * See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness.
- * The callback function receives 3 parameters: the element, the index of 
+ * The callback function receives 3 parameters: the element, the index of
  * the element, and the original array.
- * 
+ *
  * @param  {Array}    arr       Array to iterate over
  * @param  {Function} fn        Function to call when an unencountered element is reached
  * @param  {*}        context   Optional context to call the function in
@@ -49,10 +49,10 @@ var distinct = function(arr, fn, context) {
 };
 
 /**
- * Call a function while iterating over all combinations in the cartesian 
- * product of the input array. The callback function receives 5 parameters: an 
- * array of two elements that constitute the elements for the current cartesian
- * product, the iteration index of the first array, the iteration index of the
+ * Call a function while iterating over all combinations in the cartesian
+ * product of the input array. The callback function receives 6 parameters: the
+ * first element of the cartesian product pair, the second element of the
+ * cartesian product pair, the iteration index of the first array, the iteration index of the
  * second element, the first array, and the second array.
  *
  * @param  {Array}    arrA     First array to iterate over
@@ -67,17 +67,17 @@ var cartesianProduct = function(arrA, arrB, fn, context) {
 
     for (i = 0; i < aLength; i += 1) {
         for (j = 0; j < bLength; j += 1) {
-            fn.call(context, [arrA[i], arrB[j]], i, j, arrA, arrB);
+            fn.call(context, arrA[i], arrB[j], i, j, arrA, arrB);
         }
     }
 };
 
 /**
- * Group values in the array that share the same Strict equality result from 
+ * Group values in the array that share the same Strict equality result from
  * applying a provided function.
- * 
+ *
  * @param  {Array}        arr      Array to iterate over
- * @param  {Function}     fn       Function to apply to check for grouping
+ * @param  {Function}     fn       Function to apply for grouping
  * @param  {*}            context  Optional context to execute the function index
  * @return {Array<Array>}          Array of arrays where each internal array is a group
  */
@@ -87,6 +87,17 @@ var groupBy = function(arr, fn, context) {
     var ret = [];
     var current = null;
     var seen = new Set();
+    var ArrayProtoPush = Array.prototype.push;
+
+    var f = function(item, idx) {
+        if ((!seen.has(idx)) &&
+            (fn.call(context, item) === fn.call(context, arr[i]))) {
+            seen.add(idx);
+            return true;
+        }
+
+        return false;
+    };
 
     for (i = 0; i < length; i += 1) {
         if (seen.has(i)) {
@@ -94,20 +105,11 @@ var groupBy = function(arr, fn, context) {
         }
 
         seen.add(i);
-        
+
         current = [];
         current.push(arr[i]);
 
-        Array.prototype.push.apply(
-            current, 
-            arr.filter(function(item, idx) {
-                if ((!seen.has(idx)) && 
-                    (fn.call(context, item) === fn.call(context, arr[i]))) {
-                    current.push(item);
-                    seen.add(idx);
-                }
-            })
-        );
+        ArrayProtoPush.apply(current, arr.filter(f));
 
         ret.push(current);
         current = null;
@@ -117,17 +119,17 @@ var groupBy = function(arr, fn, context) {
 };
 
 /**
- * Iterate over an array of slices generated from the original array, each 
+ * Iterate over an array of slices generated from the original array, each
  * of size n. The last slice may have fewer elements than the previous slices.
- * The callback function receives 3 parameters: the current slice, 
+ * The callback function receives 3 parameters: the current slice,
  * the number of slices so far, and the original array.
- * 
+ *
  * @param  {Array}    arr          Array to create slices of size n from
  * @param  {Number}   n            Size of each slice
  * @param  {Function} fn           Function to call with each slice
  * @param  {*}        context      Optional context
  */
-var sliceN = function(arr, n, fn, context) {
+var slices = function(arr, n, fn, context) {
     var i;
     var times = Math.ceil(arr.length/n);
     var slice = null;
@@ -136,14 +138,14 @@ var sliceN = function(arr, n, fn, context) {
         slice = arr.slice(i*n, (i+1)*n);
         fn.call(context, slice, i, arr);
         slice = null;
-    }; 
+    };
 };
 
 /**
  * Execute a function at every nth element.
- * The callback function receives 3 parameters: the element, the index of 
+ * The callback function receives 3 parameters: the element, the index of
  * the element, and the original array.
- * 
+ *
  * @param  {Array}    arr        Array to take nth elements from
  * @param  {Number}   n          Value of the step n
  * @param  {Function} fn         Function to call
@@ -162,7 +164,7 @@ var takeNth = function(arr, n, fn, context) {
  * Take the first (or last) n elements of the array
  * only if there are enough elements. If there aren't enough elements
  * an error is thrown.
- * 
+ *
  * @param  {Array}   arr          Array to take elements from
  * @param  {Number}  n            Number of elements to take
  * @param  {boolean} reversed     If truthy, take from the end of the array instead
@@ -184,11 +186,11 @@ var takeStrict = function(arr, n, reversed) {
 
 /**
  * Execute a function the specified number of times,
- * with an optional increment step that defaults to 1. 
- * If the number of times is null or undefined execute the function infinitely. 
+ * with an optional increment step that defaults to 1.
+ * If the number of times is null or undefined execute the function infinitely.
  * The step will be used regardless of whether the number of times is specified.
- * The callback function receives the current iteration index as its only parameter. 
- * 
+ * The callback function receives the current iteration index as its only parameter.
+ *
  * @param  {Number}   n        Limit to the number of times
  * @param  {Number}   step     Optional increment (default: 1)
  * @param  {Function} fn       Function to call
@@ -204,7 +206,7 @@ var times = function(n, fn, context, step) {
 
     if (infinitely) {
         i = 0;
-        
+
         while (true) {
             fn.call(context, i);
             i += step;

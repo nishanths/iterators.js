@@ -7,7 +7,7 @@ const expect = chai.expect;
 const cycle = itr.cycle;
 const distinct = itr.distinct;
 const groupBy = itr.groupBy;
-const repeat = itr.repeat;
+const times = itr.times;
 const cartesianProduct = itr.cartesianProduct;
 const slices = itr.slices;
 const takeNth = itr.takeNth;
@@ -48,9 +48,9 @@ describe('cartesianProduct()', function () {
 describe('groupBy()', function () {
     it('group elements that share the same result from applying the function', function () {
         var arr = groupBy(
-            ['abc', 'foo', 'bar', 'gooey', 'gui', 'boo', 'Foo'], 
-            function(s) { 
-                return s.charAt(0).toLowerCase() 
+            ['abc', 'foo', 'bar', 'gooey', 'gui', 'boo', 'Foo'],
+            function(s) {
+                return s.charAt(0).toLowerCase()
             }
         );
 
@@ -63,10 +63,10 @@ describe('groupBy()', function () {
     });
 });
 
-describe('repeat()', function() {
+describe('times()', function() {
     it('repeat the correct number of times', function() {
         var arr = [];
-        repeat(5, function() {
+        times(5, function() {
             arr.push(42);
         });
 
