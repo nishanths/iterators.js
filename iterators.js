@@ -207,7 +207,7 @@ var subsets = function(arr, fn, context, n) {
             bit += 1;
         }
 
-        if (n == null || ((n != null) && currentSubset.length === n)) {
+        if ((n == null) || ((n != null) && (currentSubset.length === n))) {
             fn.call(context, currentSubset);
         }
 
