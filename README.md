@@ -61,11 +61,11 @@ $ node index.js
 
 # Examples
 
-The [test/](https://github.com/nishanths/iterators.js/tree/master/test) directory is a great place for in-depth examples.
+The [`test/`](https://github.com/nishanths/iterators.js/tree/master/test) directory is a great place for in-depth examples.
 
 * **cycle()** – cycle over the elements of an array
 
-````
+````js
 itr.cycle([1,2,3], 5, function(item) {
     console.log(item)
 });
