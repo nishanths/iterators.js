@@ -9,6 +9,7 @@ const distinct = itr.distinct;
 const cartesianProduct = itr.cartesianProduct;
 const groupBy = itr.groupBy;
 const slices = itr.slices;
+const subsets = itr.subsets;
 const takeNth = itr.takeNth;
 const takeStrict = itr.takeStrict;
 const times = itr.times;
@@ -91,6 +92,36 @@ describe('slices()', function () {
         });
 
         expect([[1,2],[3,4],[5]]).to.eql(arr);
+    });
+});
+
+// subsets
+
+describe('subsets()', function () {
+    it('generates all subsets', function () {
+        var arr = [];
+        subsets([1,2,3], function(e) {
+            arr.push(e)
+        }, null);
+
+        arr.sort(function(a,b) {
+            return a.length - b.length;
+        });
+
+        expect(arr).to.eql([[],[1],[2],[3],[1,2],[1,3],[2,3],[1,2,3]]);
+    });
+
+    it('generates subsets of the correct size', function () {
+        var arr = [];
+        subsets([1,2,3,4], function(e) {
+            arr.push(e)
+        }, null, 2);
+
+        arr.sort(function(a,b) {
+            return a[0] - b[0];
+        });
+
+        expect(arr).to.eql([[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]])
     });
 });
 

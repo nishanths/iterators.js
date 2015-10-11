@@ -2,6 +2,41 @@
 // https://github.com/nishanths/iterators.js
 // Licensed under the MIT License
 
+var uniques_ = function(arr, fn, context) {
+    var length = arr.length;
+    var i;
+    var seen = new Set();
+
+    for (i = 0; i < length; i += 1) {
+        if (!(seen.has(arr[i]))) {
+            seen.add(arr[i]);
+            fn.call(context, arr[i], i, arr);
+        }
+    }
+};
+
+var times_ = function(n, fn, context, step) {
+    var i;
+    var infinitely = (n == null) ? true : false;
+
+    if (step == null) {
+        step = 1;
+    }
+
+    if (infinitely) {
+        i = 0;
+
+        while (true) {
+            fn.call(context, i);
+            i += step;
+        }
+    } else {
+        for (i = 0; i < n; i += step) {
+            fn.call(context, i);
+        }
+    }
+};
+
 /**
  * Repeat a function call n times while cycling through an array.
  * The callback function receives 3 parameters: the element, the index of
@@ -36,16 +71,7 @@ var cycle = function(arr, n, fn, context) {
  * @param  {*}        context   Optional context to call the function in
  */
 var distinct = function(arr, fn, context) {
-    var length = arr.length;
-    var i;
-    var seen = new Set();
-
-    for (i = 0; i < length; i += 1) {
-        if (!(seen.has(arr[i]))) {
-            seen.add(arr[i]);
-            fn.call(context, arr[i], i, arr);
-        }
-    }
+    return uniques_(arr, fn, context);
 };
 
 /**
@@ -142,6 +168,54 @@ var slices = function(arr, n, fn, context) {
 };
 
 /**
+ * Iterate over subsets of size n generated from an array. 
+ * If n is null or undefined, then subsets of all subsets are considered.
+ * n is expected to be non-negative.
+ * Non-unique elements are removed using Same-value equality algorithm.
+ * See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness.
+ * At each iteration, the callback function receives one parameter: the subset.
+ * 
+ * @param  {Array}    arr     Array to generate subsets
+ * @param  {Function} fn      Function to call with each subset
+ * @param  {*}        context Optional context to call the function in
+ * @param  {[type]}   n       Optional size to filter subsets
+ */
+var subsets = function(arr, fn, context, n) {
+    var uniques = [];
+
+    uniques_(arr, function(elem) {
+        uniques.push(elem);
+    });
+
+    var i;
+    var j;
+    var bit;
+    
+    var maxSize = uniques.length;
+    var twoPowerMaxSize = 1 << maxSize;
+    
+    var currentSubset = null;
+
+    for (i = 0; i < twoPowerMaxSize; i += 1) {
+        currentSubset = [];
+
+        bit = 0;
+        for (j = i; j > 0; j = j>>1) {
+            if ((j & 1) === 1) {
+                currentSubset.push(uniques[bit]);
+            }
+            bit += 1;
+        }
+
+        if (n == null || ((n != null) && currentSubset.length === n)) {
+            fn.call(context, currentSubset);
+        }
+
+        currentSubset = null;
+    }
+};
+
+/**
  * Execute a function at every nth element.
  * The callback function receives 3 parameters: the element, the index of
  * the element, and the original array.
@@ -197,25 +271,7 @@ var takeStrict = function(arr, n, reversed) {
  * @param  {*}        context  Optional context to call the function in
  */
 var times = function(n, fn, context, step) {
-    var i;
-    var infinitely = (n == null) ? true : false;
-
-    if (step == null) {
-        step = 1;
-    }
-
-    if (infinitely) {
-        i = 0;
-
-        while (true) {
-            fn.call(context, i);
-            i += step;
-        }
-    } else {
-        for (i = 0; i < n; i += step) {
-            fn.call(context, i);
-        }
-    }
+    times_(n, fn, context, step);
 };
 
 // Node module exports
@@ -226,6 +282,7 @@ module.exports = {
     cartesianProduct: cartesianProduct,
     groupBy: groupBy,
     slices: slices,
+    subsets: subsets,
     takeNth: takeNth,
     takeStrict: takeStrict,
     times: times
