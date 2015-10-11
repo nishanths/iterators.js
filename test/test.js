@@ -1,5 +1,5 @@
 const chai = require('chai');
-const itr = require('../lib/iterators.js');
+const itr = require('../iterators.js');
 
 const assert = chai.assert;
 const expect = chai.expect;
