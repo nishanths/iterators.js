@@ -111,6 +111,18 @@ var arr = itr.groupBy(['abc', 'gooey', 'foo', 'Gui'], firstCharNormalizedCase);
 console.log(arr); // [ [ 'abc' ], [ 'gooey', 'Gui' ], [ 'foo' ] ]
 ````
 
+* **slices()** – iterate over slices each of size n; if the array does not slice "evenly", the last slice will have fewer elements
+
+````js
+itr.slices([1,2,3,4,5], 2, function(slice) {
+    console.log(slice);
+});
+
+// [1,2]
+// [3,4]
+// [5]
+````
+
 * **subsets()** – iterate subsets (optionally specify a size, defaults to subsets of all sizes when null)
 
 ````js
