@@ -1,13 +1,10 @@
-# [iterators.js](./)
+# [iterators.js]()
 
 Useful functional iterators. 
 
 Inspired by [JuliaLang/Iterators.jl](https://github.com/JuliaLang/Iterators.jl). 
 
-[![npm ver](https://img.shields.io/npm/v/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![downloads total](https://img.shields.io/npm/dm/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![downloads total](https://img.shields.io/npm/dt/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) 
-
-[![travis ci](https://img.shields.io/travis/nishanths/iterators.js.svg)](https://travis-ci.org/nishanths/iterators.js)
-[![Coverage Status](https://coveralls.io/repos/nishanths/iterators.js/badge.svg?branch=master&service=github)](https://coveralls.io/github/nishanths/iterators.js?branch=master)  [![license](https://img.shields.io/npm/l/iterators.js.svg)](https://github.com/nishanths/iterators.js/blob/master/LICENSE)
+[![npm ver](https://img.shields.io/npm/v/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![downloads total](https://img.shields.io/npm/dm/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![downloads total](https://img.shields.io/npm/dt/iterators.js.svg)](https://www.npmjs.com/package/iterators.js)  [![travis ci](https://img.shields.io/travis/nishanths/iterators.js.svg)](https://travis-ci.org/nishanths/iterators.js)  [![license](https://img.shields.io/npm/l/iterators.js.svg)](https://github.com/nishanths/iterators.js/blob/master/LICENSE)
 
 iterators.js has no dependencies. Tests are available in the `tests/` directory. Run `npm test` or `mocha` to execute tests.
 
