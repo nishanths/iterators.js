@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Iterators.js by nishanths</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Iterators.js</h1>
+      <h2 class="project-tagline">Useful functional iterators. Inspired by Iterators.jl</h2>
+      <a href="https://github.com/nishanths/iterators.js" class="btn">View on GitHub</a>
+      <a href="https://github.com/nishanths/iterators.js/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/nishanths/iterators.js/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="iteratorsjs" class="anchor" href="#iteratorsjs" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="./">iterators.js</a>
+</h1>
+
+<p>Useful functional iterators. </p>
+
+<p>Inspired by <a href="https://github.com/JuliaLang/Iterators.jl">JuliaLang/Iterators.jl</a>. </p>
+
+<p><a href="https://www.npmjs.com/package/iterators.js"><img src="https://img.shields.io/npm/v/iterators.js.svg" alt="npm ver"></a> <a href="https://www.npmjs.com/package/iterators.js"><img src="https://img.shields.io/npm/dm/iterators.js.svg" alt="downloads total"></a> <a href="https://www.npmjs.com/package/iterators.js"><img src="https://img.shields.io/npm/dt/iterators.js.svg" alt="downloads total"></a> <a href="https://travis-ci.org/nishanths/iterators.js"><img src="https://img.shields.io/travis/nishanths/iterators.js.svg" alt="travis ci"></a> <a href="https://github.com/nishanths/iterators.js/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/iterators.js.svg" alt="license"></a></p>
+
+<p>iterators.js has no dependencies. Tests are available in the <code>tests/</code> directory. Run <code>npm test</code> or <code>mocha</code> to execute tests.</p>
+
+<p><strong>Warning:</strong> iterators.js requires some ES6 features such as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a>.</p>
+
+<h1>
+<a id="contents" class="anchor" href="#contents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contents</h1>
+
+<ul>
+<li><a href="#install">Install</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#functions">Functions</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+
+<h1>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h1>
+
+<p>iterators.js is available on <a href="">npm</a>. Installing is simple. Simply add it to your project by running:</p>
+
+<div class="highlight highlight-source-shell"><pre>$ npm install --save iterators.js</pre></div>
+
+<p>To install globally, run: (you may need to use sudo)</p>
+
+<div class="highlight highlight-source-shell"><pre>$ npm install -g iterators.js</pre></div>
+
+<p>Alternatively, grab a <a href="https://github.com/nishanths/iterators.js/archive/master.zip">zip file</a> of the repository.</p>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>In your JavaScript, <code>require</code> iterators.js.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// index.js</span>
+
+<span class="pl-k">var</span> itr <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>iterators.js<span class="pl-pds">'</span></span>);
+
+itr.distinct([<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>], <span class="pl-k">function</span>(<span class="pl-smi">item</span>) {
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(item);
+});
+</pre></div>
+
+<p>Back at the terminal:</p>
+
+<div class="highlight highlight-source-shell"><pre>$ node index.js
+1
+2
+3</pre></div>
+
+<h1>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h1>
+
+<p>The <a href="https://github.com/nishanths/iterators.js/tree/master/test">tests/</a> directory is a great place for in-depth examples.</p>
+
+<ul>
+<li>
+<strong>cycle()</strong> – cycle over the elements of an array</li>
+</ul>
+
+<pre><code>itr.cycle([1,2,3], 5, function(item) {
+    console.log(item)
+});
+
+// 1
+// 2
+// 3
+// 1
+// 2
+</code></pre>
+
+<ul>
+<li>
+<strong>distinct()</strong> – iterate only over unencountered elements</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre>itr.distinct([<span class="pl-c1">1</span>,<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>], <span class="pl-k">function</span>(<span class="pl-smi">item</span>) {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(item);
+});
+
+<span class="pl-c">// 1</span>
+<span class="pl-c">// 2</span>
+<span class="pl-c">// 3</span></pre></div>
+
+<ul>
+<li>
+<strong>cartesianProduct()</strong> - generate cartesian product pairs</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre>itr.cartesianProduct([<span class="pl-c1">1</span>,<span class="pl-c1">2</span>], [<span class="pl-c1">3</span>,<span class="pl-c1">4</span>], <span class="pl-k">function</span>(<span class="pl-smi">a</span>, <span class="pl-smi">b</span>) {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(a <span class="pl-k">*</span> b);
+});
+
+<span class="pl-c">// 3</span>
+<span class="pl-c">// 4</span>
+<span class="pl-c">// 6</span>
+<span class="pl-c">// 8</span></pre></div>
+
+<ul>
+<li>
+<strong>groupBy()</strong> – group elements into arrays depending on the result from applying the specified function</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-en">firstChar</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">str</span>) { <span class="pl-k">return</span> str.<span class="pl-c1">charAt</span>(<span class="pl-c1">0</span>); };
+<span class="pl-k">var</span> arr <span class="pl-k">=</span> itr.groupBy([<span class="pl-s"><span class="pl-pds">'</span>abc<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>gooey<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>gui<span class="pl-pds">'</span></span>], firstChar);
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(arr); <span class="pl-c">// [ [ 'abc' ], [ 'foo' ], [ 'gooey', 'gui' ] ]</span></pre></div>
+
+<ul>
+<li>
+<strong>subsets()</strong> – iterate subsets (optionally specify a size, defaults to subsets of all sizes when null)</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> arr <span class="pl-k">=</span> [];
+<span class="pl-k">var</span> context <span class="pl-k">=</span> <span class="pl-c1">null</span>;
+<span class="pl-k">var</span> size <span class="pl-k">=</span> <span class="pl-c1">null</span>;
+
+itr.subsets([<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>], <span class="pl-k">function</span>(<span class="pl-smi">e</span>) {
+    arr.<span class="pl-c1">push</span>(e)
+}, context, size);
+
+arr.<span class="pl-c1">sort</span>(<span class="pl-k">function</span>(<span class="pl-smi">a</span>,<span class="pl-smi">b</span>) {
+    <span class="pl-k">return</span> a.<span class="pl-c1">length</span> <span class="pl-k">-</span> b.<span class="pl-c1">length</span>;
+});
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(arr); <span class="pl-c">// [[],[1],[2],[3],[1,2],[1,3],[2,3],[1,2,3]]</span></pre></div>
+
+<ul>
+<li>
+<strong>takeNth()</strong> – iterate over every nth element</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre>itr.takeNth([<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>,<span class="pl-c1">4</span>,<span class="pl-c1">5</span>], <span class="pl-c1">2</span>, <span class="pl-k">function</span>(<span class="pl-smi">item</span>) {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(item);
+});
+
+<span class="pl-c">// 2</span>
+<span class="pl-c">// 4</span></pre></div>
+
+<ul>
+<li>
+<strong>takeStrict()</strong> – take n elements only if at least n elements exists, oherwise throw an Error.</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> reversed <span class="pl-k">=</span> <span class="pl-c1">true</span>;
+<span class="pl-k">var</span> arr <span class="pl-k">=</span> itr.takeStrict([<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>,<span class="pl-c1">4</span>,<span class="pl-c1">5</span>,<span class="pl-c1">6</span>,<span class="pl-c1">10</span>], <span class="pl-c1">5</span>, reversed);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(arr); <span class="pl-c">// [3,4,5,6,10]</span></pre></div>
+
+<ul>
+<li>
+<strong>times()</strong> – repeatedly call a function</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> arr <span class="pl-k">=</span> [];
+<span class="pl-k">var</span> idxs <span class="pl-k">=</span> [];
+
+itr.times(<span class="pl-c1">5</span>, <span class="pl-k">function</span>(<span class="pl-smi">idx</span>) {
+    arr.<span class="pl-c1">push</span>(<span class="pl-c1">42</span>);
+    idxs.<span class="pl-c1">push</span>(idx);
+});
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(arr); <span class="pl-c">// [42,42,42,42,42]</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(idxs); <span class="pl-c">// [0,1,2,3,4]</span></pre></div>
+
+<h1>
+<a id="functions" class="anchor" href="#functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Functions</h1>
+
+<ul>
+<li>cycle</li>
+<li>distinct</li>
+<li>cartesianProduct</li>
+<li>groupBy</li>
+<li>slices</li>
+<li>subsets</li>
+<li>takeNth</li>
+<li>takeStrict</li>
+<li>times</li>
+</ul>
+
+<h1>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h1>
+
+<p>Pull requests are welcome!</p>
+
+<ol>
+<li>Fork the repository</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request on GitHub</li>
+</ol>
+
+<h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h1>
+
+<p><a href="https://github.com/nishanths/iterators.js/blob/master/LICENSE">MIT</a>.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/nishanths/iterators.js">Iterators.js</a> is maintained by <a href="https://github.com/nishanths">nishanths</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-61427501-3");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
