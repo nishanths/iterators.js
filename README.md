@@ -6,7 +6,7 @@ Inspired by [JuliaLang/Iterators.jl](https://github.com/JuliaLang/Iterators.jl).
 
 [![npm ver](https://img.shields.io/npm/v/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![downloads total](https://img.shields.io/npm/dm/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![downloads total](https://img.shields.io/npm/dt/iterators.js.svg)](https://www.npmjs.com/package/iterators.js)  [![travis ci](https://img.shields.io/travis/nishanths/iterators.js.svg)](https://travis-ci.org/nishanths/iterators.js)  [![license](https://img.shields.io/npm/l/iterators.js.svg)](https://github.com/nishanths/iterators.js/blob/master/LICENSE)
 
-iterators.js has no dependencies. Tests are available in the `tests/` directory. Run `npm test` or `mocha` to execute tests.
+iterators.js is designed to be performant and to iterate as lazily as possible in most scenarios. It has no dependencies. Tests are available in the `test/` directory. Run `npm test` or `mocha` to execute tests.
 
 **Warning:** iterators.js requires some ES6 features such as [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set).
 
@@ -21,7 +21,7 @@ iterators.js has no dependencies. Tests are available in the `tests/` directory.
 
 # Install
 
-iterators.js is available on [npm](). Installing is simple. Simply add it to your project by running:
+iterators.js is available on [npm](https://www.npmjs.com/package/iterators.js). Installing is simple. Simply add it to your project (and package.json) by running:
 
 ````bash
 $ npm install --save iterators.js
@@ -61,7 +61,7 @@ $ node index.js
 
 # Examples
 
-The [tests/](https://github.com/nishanths/iterators.js/tree/master/test) directory is a great place for in-depth examples.
+The [test/](https://github.com/nishanths/iterators.js/tree/master/test) directory is a great place for in-depth examples.
 
 * **cycle()** – cycle over the elements of an array
 
@@ -89,7 +89,7 @@ itr.distinct([1,1,2,3], function(item) {
 // 3
 ````
 
-* **cartesianProduct()** - generate cartesian product pairs
+* **cartesianProduct()** - iterate cartesian product pairs
 
 ````js
 itr.cartesianProduct([1,2], [3,4], function(a, b) {
@@ -105,10 +105,10 @@ itr.cartesianProduct([1,2], [3,4], function(a, b) {
 * **groupBy()** – group elements into arrays depending on the result from applying the specified function
 
 ````js
-var firstChar = function(str) { return str.charAt(0); };
-var arr = itr.groupBy(['abc', 'foo', 'gooey', 'gui'], firstChar);
+var firstCharNormalizedCase = function(str) { return str.charAt(0).toLowerCase(); };
+var arr = itr.groupBy(['abc', 'gooey', 'foo', 'Gui'], firstCharNormalizedCase);
 
-console.log(arr); // [ [ 'abc' ], [ 'foo' ], [ 'gooey', 'gui' ] ]
+console.log(arr); // [ [ 'abc' ], [ 'gooey', 'Gui' ], [ 'foo' ] ]
 ````
 
 * **subsets()** – iterate subsets (optionally specify a size, defaults to subsets of all sizes when null)

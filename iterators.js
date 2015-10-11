@@ -76,10 +76,9 @@ var distinct = function(arr, fn, context) {
 
 /**
  * Call a function while iterating over all combinations in the cartesian
- * product of the input array. The callback function receives 6 parameters: the
- * first element of the cartesian product pair, the second element of the
- * cartesian product pair, the iteration index of the first array, the iteration index of the
- * second element, the first array, and the second array.
+ * product of the input array. The callback function receives 5 parameters: the
+ * cartesian product pair, the iteration index of the first array, the iteration 
+ * index of the second element, the first array, and the second array.
  *
  * @param  {Array}    arrA     First array to iterate over
  * @param  {Array}    arrB     Second array to iterate over
@@ -93,7 +92,7 @@ var cartesianProduct = function(arrA, arrB, fn, context) {
 
     for (i = 0; i < aLength; i += 1) {
         for (j = 0; j < bLength; j += 1) {
-            fn.call(context, arrA[i], arrB[j], i, j, arrA, arrB);
+            fn.call(context, [arrA[i], arrB[j]], i, j, arrA, arrB);
         }
     }
 };
@@ -178,7 +177,7 @@ var slices = function(arr, n, fn, context) {
  * @param  {Array}    arr     Array to generate subsets
  * @param  {Function} fn      Function to call with each subset
  * @param  {*}        context Optional context to call the function in
- * @param  {[type]}   n       Optional size to filter subsets
+ * @param  {Number}   n       Optional size to filter subsets
  */
 var subsets = function(arr, fn, context, n) {
     var uniques = [];

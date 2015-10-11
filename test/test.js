@@ -45,8 +45,8 @@ describe('distinct()', function() {
 describe('cartesianProduct()', function () {
     it('cartesian product pairs', function () {
         var arr = [];
-        cartesianProduct([1,2], [3,4], function(a,b) {
-            arr.push(a*b);
+        cartesianProduct([1,2], [3,4], function(pair) {
+            arr.push(pair[0] * pair[1]);
         });
 
         expect(arr).to.eql([3,4,6,8]);
