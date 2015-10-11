@@ -147,13 +147,13 @@ describe('takeStrict()', function() {
     });
 
     it('takes last 5 elements because at least 5 elements exist', function() {
-        reversed = true;
+        var reversed = true;
         var arr = takeStrict([1,2,3,4,5,6,10], 5, reversed);
         expect(arr).to.eql([3,4,5,6,10]);
     });
 
     it('throws an error if not enough elements exist, and throws before returning any value', function() {
-        reversed = true;
+        var reversed = true;
         var arr = [42];
         var errorCaught = false;
 
