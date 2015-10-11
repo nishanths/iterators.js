@@ -138,6 +138,19 @@ itr.distinct([<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span 
 
 <ul>
 <li>
+<strong>slices()</strong> – iterate over slices each of size n; if the array does not slice "evenly", the last slice will have fewer elements</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre>itr.slices([<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>,<span class="pl-c1">4</span>,<span class="pl-c1">5</span>], <span class="pl-c1">2</span>, <span class="pl-k">function</span>(<span class="pl-smi">slice</span>) {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(slice);
+});
+
+<span class="pl-c">// [1,2]</span>
+<span class="pl-c">// [3,4]</span>
+<span class="pl-c">// [5]]</span></pre></div>
+
+<ul>
+<li>
 <strong>subsets()</strong> – iterate subsets (optionally specify a size, defaults to subsets of all sizes when null)</li>
 </ul>
 
