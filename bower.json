@@ -1,0 +1,30 @@
+{
+  "name": "iterators.js",
+  "main": "iterators.js",
+  "version": "0.2.5",
+  "homepage": "https://github.com/nishanths/iterators.js",
+  "authors": [
+    "Nishanth Shanmugham <nishanth.gerrard@gmail.com>"
+  ],
+  "description": "Useful functional iterators",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "iterators",
+    "functional",
+    "utility",
+    "arrays",
+    "foreach"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
