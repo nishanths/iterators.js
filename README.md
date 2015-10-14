@@ -35,7 +35,7 @@ If you're using bower, run:
 $ bower install iterators.js
 ```` 
 
-Direct link for browsers:
+Direct link for browsers, minified:
 
 ````html
 <script type="text/javascript" src="https://rawgit.com/nishanths/iterators.js/master/iterators.min.js"></script>
