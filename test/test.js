@@ -20,7 +20,7 @@ const times = itr.times;
 // count
 
 describe('count()', function () {
-    it('iterates for start to end with the specified steps', function() {
+    it('iterates from start to end with the specified step', function() {
         var arr = [];
         count(10, 20, 2, function(i) {
             arr.push(i);
@@ -29,7 +29,7 @@ describe('count()', function () {
         expect(arr).to.eql([10,12,14,16,18]);
     });
 
-    it('iterates for start to end with the default values when unspecified', function() {
+    it('iterates from start to end with the default values when unspecified', function() {
         var arr = [];
         count(undefined, 5, undefined, function(i) {
             arr.push(i);
@@ -109,12 +109,21 @@ describe('imap()', function () {
         return Math.pow(x, 1/2);
     };
 
-    it('applies the function to each array and returns an array of results', function () {
+    var sum = function(a,b,c) {
+        return a + b + c;
+    };
+
+    it('applies the function to each element in the arrays and returns an array of results', function () {
         var arr = imap(function(a,b) {
             return squareRoot((square(a) + square(b)));
         }, null, [2,3,8], [0,4,6]);
 
         expect(arr).to.eql([2,5,10]);
+    });
+
+    it('applies the function to each element in the arrays and returns an array of results (more than 2 arrays)', function () {
+        var arr = imap(sum, null, [2,3,8], [0,4,6], [1,3,10]);
+        expect(arr).to.eql([3,10,24]);
     });
 });
 
