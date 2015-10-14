@@ -1,12 +1,12 @@
-# [iterators.js]()
+# iterators.js
 
 Useful functional iterators. 
 
 Inspired by [JuliaLang/Iterators.jl](https://github.com/JuliaLang/Iterators.jl). 
 
-[![npm ver](https://img.shields.io/npm/v/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![downloads total](https://img.shields.io/npm/dm/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![downloads total](https://img.shields.io/npm/dt/iterators.js.svg)](https://www.npmjs.com/package/iterators.js)  [![travis ci](https://img.shields.io/travis/nishanths/iterators.js.svg)](https://travis-ci.org/nishanths/iterators.js)  [![license](https://img.shields.io/npm/l/iterators.js.svg)](https://github.com/nishanths/iterators.js/blob/master/LICENSE)
+[![npm ver](https://img.shields.io/npm/v/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![downloads total](https://img.shields.io/npm/dt/iterators.js.svg)](https://www.npmjs.com/package/iterators.js)  [![travis ci](https://img.shields.io/travis/nishanths/iterators.js.svg)](https://travis-ci.org/nishanths/iterators.js)  [![license](https://img.shields.io/npm/l/iterators.js.svg)](https://github.com/nishanths/iterators.js/blob/master/LICENSE)
 
-iterators.js is designed to be performant and to iterate as lazily as possible in most scenarios. It has no dependencies. Tests are available in the `test/` directory. Run `npm test` or `mocha` to execute tests.
+iterators.js is designed to be performant and to iterate as lazily as possible in most scenarios. It has no dependencies. Tests are available in the [`test/`](https://github.com/nishanths/iterators.js/tree/master/test) directory. Run `npm test` or `mocha` to execute tests.
 
 **Warning:** iterators.js requires some ES6 features such as [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set).
 
@@ -61,13 +61,36 @@ $ node index.js
 
 # Examples
 
-The [`test/`](https://github.com/nishanths/iterators.js/tree/master/test) directory is a great place for in-depth examples.
+## General notes
+
+* The [`test/`](https://github.com/nishanths/iterators.js/tree/master/test) directory is a great place for in-depth examples.
+* Functions also provide the option to specify a context (`this` value) for your callback function.
+
+## Snippets
+
+* **count()** – iterate from start to end (excluded) using the specified step
+
+````js
+var start = 10;
+var end = 20;
+var step = 5;
+
+itr.count(start, end, step, function(item) {
+    console.log(item);
+});
+
+// 10
+// 12
+// 14
+// 16
+// 18
+````
 
 * **cycle()** – cycle over the elements of an array
 
 ````js
 itr.cycle([1,2,3], 5, function(item) {
-    console.log(item)
+    console.log(item);
 });
 
 // 1
@@ -109,6 +132,32 @@ var firstCharNormalizedCase = function(str) { return str.charAt(0).toLowerCase()
 var arr = itr.groupBy(['abc', 'gooey', 'foo', 'Gui'], firstCharNormalizedCase);
 
 console.log(arr); // [ [ 'abc' ], [ 'gooey', 'Gui' ], [ 'foo' ] ]
+````
+
+* **imap()** – applies a function to each element in the arrays and returns an array of results
+
+````js
+var self = null;
+var sum = function(a,b,c) {
+  return a + b + c;
+};
+
+var arr = itr.imap(sum, self, [2,3,8], [0,4,6], [1,3,10]);
+
+console.log(arr); // [3,10,24]
+````
+
+* **iterate()** – successively applies a function to the value and returns an array of result
+
+````js
+var x = 2;
+var numTimes = 3;
+
+var arr = itr.iterate(x, numTimes, function(value) {
+    return value * 10;
+});
+
+console.log(arr); // [2,20,200]
 ````
 
 * **slices()** – iterate over slices each of size n; if the array does not slice "evenly", the last slice will have fewer elements
@@ -177,10 +226,13 @@ console.log(idxs); // [0,1,2,3,4]
 
 # Functions
 
+* count
 * cycle
 * distinct
 * cartesianProduct
 * groupBy
+* imap
+* iterate
 * slices
 * subsets
 * takeNth
