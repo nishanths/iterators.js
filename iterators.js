@@ -219,6 +219,27 @@ var imap = function(fn, context, arrs) {
 };
 
 /**
+ * Iterate over successive applications on a function
+ * for the specified number of times
+ * @param  {*}        x       Value to apply function to
+ * @param  {number}   num     Number of times to successively apply the function
+ * @param  {Function} fn      Function to apply successively on x
+ * @param  {*}        context Optional context to call the function in
+ * @return {Array}            Array of results of the successive application
+ */
+var iterate = function(x, num, fn, context) {
+    var i;
+    var ret = [];
+
+    for (i = 0; i < num; i += 1) {
+        ret.push(x);
+        x = fn.call(context, x);
+    }
+
+    return ret;
+};
+
+/**
  * Iterate over an array of slices generated from the original array, each
  * of size n. The last slice may have fewer elements than the previous slices.
  * The callback function receives 3 parameters: the current slice,
@@ -357,6 +378,7 @@ module.exports = {
     cartesianProduct: cartesianProduct,
     groupBy: groupBy,
     imap: imap,
+    iterate: iterate,
     slices: slices,
     subsets: subsets,
     takeNth: takeNth,
