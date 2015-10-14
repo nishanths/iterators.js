@@ -5,14 +5,38 @@ const assert = chai.assert;
 const expect = chai.expect;
 
 const cycle = itr.cycle;
+const count = itr.count;
 const distinct = itr.distinct;
 const cartesianProduct = itr.cartesianProduct;
 const groupBy = itr.groupBy;
+const imap = itr.imap;
 const slices = itr.slices;
 const subsets = itr.subsets;
 const takeNth = itr.takeNth;
 const takeStrict = itr.takeStrict;
 const times = itr.times;
+
+// count
+
+describe('count()', function () {
+    it('iterates for start to end with the specified steps', function() {
+        var arr = [];
+        count(10, 20, 2, function(i) {
+            arr.push(i);
+        });
+
+        expect(arr).to.eql([10,12,14,16,18]);
+    });
+
+    it('iterates for start to end with the default values when unspecified', function() {
+        var arr = [];
+        count(undefined, 5, undefined, function(i) {
+            arr.push(i);
+        });
+
+        expect(arr).to.eql([0,1,2,3,4]);
+    });
+});
 
 // cycle
 
@@ -70,6 +94,26 @@ describe('groupBy()', function () {
             [ 'bar', 'boo' ],
             [ 'gooey', 'gui' ]
         ]);
+    });
+});
+
+// imap
+
+describe('imap()', function () {
+    var square = function(x) {
+        return Math.pow(x, 2);
+    };
+
+    var squareRoot = function(x) {
+        return Math.pow(x, 1/2);
+    };
+
+    it('applies the function to each array and returns an array of results', function () {
+        var arr = imap(function(a,b) {
+            return squareRoot((square(a) + square(b)));
+        }, null, [2,3,8], [0,4,6]);
+
+        expect(arr).to.eql([2,5,10]);
     });
 });
 

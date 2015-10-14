@@ -38,12 +38,41 @@ var times_ = function(n, fn, context, step) {
 };
 
 /**
+ * Start counting at `start` until `end` (excluded) and increment/decrement
+ * by `step` each time.
+ * If `start` is not provided, it defaults to 0.
+ * If `step` is not provided, it defaults to 1.
+ * The callback function receives 1 parameter: the current count.
+ *
+ * @param  {number}   start   Value to start counting from
+ * @param  {number}   end     Value to stop counting at (excluded)
+ * @param  {number}   step    The increment/decrement step
+ * @param  {Function} fn      Function to call at each iteration
+ * @param  {*}        context Optional context to call the function in
+ */
+var count = function(start, end, step, fn, context) {
+    var i;
+
+    if (start == null) {
+        start = 0;
+    }
+
+    if (step == null) {
+        step = 1;
+    }
+
+    for (i = start; i < end; i += step) {
+        fn.call(context, i);
+    }
+};
+
+/**
  * Repeat a function call n times while cycling through an array.
  * The callback function receives 3 parameters: the element, the index of
  * the element, and the original array.
  *
  * @param  {Array}    arr      Array to cycle through
- * @param  {Number}   n        Number of times to call the function while cycling over elements
+ * @param  {number}   n        Number of times to call the function while cycling over elements
  * @param  {Function} fn       Function to call
  * @param  {*}        context  Optional context to call the function in
  */
@@ -77,7 +106,7 @@ var distinct = function(arr, fn, context) {
 /**
  * Call a function while iterating over all combinations in the cartesian
  * product of the input array. The callback function receives 5 parameters: the
- * cartesian product pair, the iteration index of the first array, the iteration 
+ * cartesian product pair, the iteration index of the first array, the iteration
  * index of the second element, the first array, and the second array.
  *
  * @param  {Array}    arrA     First array to iterate over
@@ -144,13 +173,59 @@ var groupBy = function(arr, fn, context) {
 };
 
 /**
+ * Iterate over results of a function applied to one or more iterators.
+ * The map function is called "length of the first array" times.
+ *
+ * @param  {Function}   fn      Function to apply
+ * @param  {*}          context Optional context to apply the function in
+ * @param  {Array}      arrs    Variable array arguments to apply the function to
+ * @return {Array}              Results array
+ */
+var imap = function(fn, context, arrs) {
+    var ArrayProto = Array.prototype;
+    var arrays = ArrayProto.slice.call(arguments, 2);
+    var ret = [];
+
+    if (arrays.length === 0) {
+        return ret;
+    }
+
+    var i;
+    var values = null;
+    var currentArr = null;
+    var numCalls = arrays[0].length;
+    var numArrays = arrays.length;
+
+    var collectElementAtIndex = function(idx) {
+        var collected = [];
+        var i;
+
+        for (i = 0; i < numArrays; i += 1) {
+            collected.push(arrays[i][idx]);
+        }
+
+        return collected;
+    };
+
+    for (i = 0; i < numCalls; i += 1) {
+        // Collect values from each array
+        values = collectElementAtIndex(i);
+        // Apply the function and save the result
+        ret.push(fn.apply(context, values));
+        values = null;
+    }
+
+    return ret;
+};
+
+/**
  * Iterate over an array of slices generated from the original array, each
  * of size n. The last slice may have fewer elements than the previous slices.
  * The callback function receives 3 parameters: the current slice,
  * the number of slices so far, and the original array.
  *
  * @param  {Array}    arr          Array to create slices of size n from
- * @param  {Number}   n            Size of each slice
+ * @param  {number}   n            Size of each slice
  * @param  {Function} fn           Function to call with each slice
  * @param  {*}        context      Optional context
  */
@@ -167,17 +242,17 @@ var slices = function(arr, n, fn, context) {
 };
 
 /**
- * Iterate over subsets of size n generated from an array. 
+ * Iterate over subsets of size n generated from an array.
  * If n is null or undefined, then subsets of all subsets are considered.
  * n is expected to be non-negative.
  * Non-unique elements are removed using Same-value equality algorithm.
  * See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness.
  * At each iteration, the callback function receives one parameter: the subset.
- * 
+ *
  * @param  {Array}    arr     Array to generate subsets
  * @param  {Function} fn      Function to call with each subset
  * @param  {*}        context Optional context to call the function in
- * @param  {Number}   n       Optional size to filter subsets
+ * @param  {number}   n       Optional size to filter subsets
  */
 var subsets = function(arr, fn, context, n) {
     var uniques = [];
@@ -189,10 +264,10 @@ var subsets = function(arr, fn, context, n) {
     var i;
     var j;
     var bit;
-    
+
     var maxSize = uniques.length;
     var twoPowerMaxSize = 1 << maxSize;
-    
+
     var currentSubset = null;
 
     for (i = 0; i < twoPowerMaxSize; i += 1) {
@@ -220,7 +295,7 @@ var subsets = function(arr, fn, context, n) {
  * the element, and the original array.
  *
  * @param  {Array}    arr        Array to take nth elements from
- * @param  {Number}   n          Value of the step n
+ * @param  {number}   n          Value of the step n
  * @param  {Function} fn         Function to call
  * @param  {*}        context    Optional context to call the function in
  */
@@ -239,7 +314,7 @@ var takeNth = function(arr, n, fn, context) {
  * an error is thrown.
  *
  * @param  {Array}   arr          Array to take elements from
- * @param  {Number}  n            Number of elements to take
+ * @param  {number}  n            Number of elements to take
  * @param  {boolean} reversed     If truthy, take from the end of the array instead
  * @return {Array}                Array with the n values
  */
@@ -264,8 +339,8 @@ var takeStrict = function(arr, n, reversed) {
  * The step will be used regardless of whether the number of times is specified.
  * The callback function receives the current iteration index as its only parameter.
  *
- * @param  {Number}   n        Limit to the number of times
- * @param  {Number}   step     Optional increment (default: 1)
+ * @param  {number}   n        Limit to the number of times
+ * @param  {number}   step     Optional increment (default: 1)
  * @param  {Function} fn       Function to call
  * @param  {*}        context  Optional context to call the function in
  */
@@ -276,10 +351,12 @@ var times = function(n, fn, context, step) {
 // Node module exports
 
 module.exports = {
+    count: count,
     cycle: cycle,
     distinct: distinct,
     cartesianProduct: cartesianProduct,
     groupBy: groupBy,
+    imap: imap,
     slices: slices,
     subsets: subsets,
     takeNth: takeNth,
