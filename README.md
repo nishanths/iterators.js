@@ -38,7 +38,7 @@ $ bower install iterators.js
 Direct link for browsers:
 
 ````html
-<script type="text/javascript" src="https://rawgit.com/nishanths/iterators.js/master/iterators.js"></script>
+<script type="text/javascript" src="https://rawgit.com/nishanths/iterators.js/master/iterators.min.js"></script>
 ````
 
 # Usage
@@ -80,7 +80,7 @@ Load it in your browser. Set the `src` for iterators.js to either a local copy (
 </head>
 <body>
   Hello, world
-  <script type="text/javascript" src="https://rawgit.com/nishanths/iterators.js/master/iterators.js"></script>
+  <script type="text/javascript" src="https://rawgit.com/nishanths/iterators.js/master/iterators.min.js"></script>
   <script type="text/javascript" src="./main.js"></script>
 </body>
 </html>
@@ -102,10 +102,10 @@ itr.distinct([1, 2, 1, 2, 3], function(item) {
 // 3
 ````
 
-**Note on global variable conflicts:** The previous `itr` variable can be retrieved by running `itr.noConflicts()`. The function resets the `itr` variable back to its original value and return a reference to the iterators.js's itr object which you can assign to the variable of your choosing.
+**Note on global variable conflicts:** The previous `itr` variable can be retrieved by running `itr.noConflict()`. The function resets the `itr` variable back to its original value and returns a reference to the iterators.js's itr object which you can assign to the variable of your choosing.
 
 ````js
-var myItr = itr.noConflicts(); 
+var myItr = itr.noConflict(); 
 // Previous itr is now restored
 // myItr can be used to access iterator.js's library functions
 ````
