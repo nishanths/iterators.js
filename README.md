@@ -4,7 +4,7 @@ Useful functional iterators.
 
 Inspired by [JuliaLang/Iterators.jl](https://github.com/JuliaLang/Iterators.jl). 
 
-[![npm ver](https://img.shields.io/npm/v/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![bower logo](https://img.shields.io/bower/v/iterators.js.svg)](http://bower.io/search/?q=iterators.js)  [![travis ci](https://img.shields.io/travis/nishanths/iterators.js.svg)](https://travis-ci.org/nishanths/iterators.js)  [![license](https://img.shields.io/npm/l/iterators.js.svg)](https://github.com/nishanths/iterators.js/blob/master/LICENSE)
+[![npm ver](https://img.shields.io/npm/v/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![bower logo](https://img.shields.io/bower/v/iterators.js.svg)](http://bower.io/search/?q=iterators.js)  [![downloads total](https://img.shields.io/npm/dt/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![travis ci](https://img.shields.io/travis/nishanths/iterators.js.svg)](https://travis-ci.org/nishanths/iterators.js)  [![license](https://img.shields.io/npm/l/iterators.js.svg)](https://github.com/nishanths/iterators.js/blob/master/LICENSE)
 
 iterators.js is designed to be performant and to iterate as lazily as possible in most scenarios. It has no dependencies. Tests are available in the [`test/`](https://github.com/nishanths/iterators.js/tree/master/test) directory. Run `npm test` or `mocha` to execute tests.
 
@@ -159,8 +159,8 @@ itr.distinct([1,1,2,3], function(item) {
 * **cartesianProduct()** - iterate cartesian product pairs
 
 ````js
-itr.cartesianProduct([1,2], [3,4], function(a, b) {
-    console.log(a * b);
+itr.cartesianProduct([1,2], [3,4], function(pair) {
+    console.log(pair[0] * pair[1]);
 });
 
 // 3
@@ -245,7 +245,7 @@ itr.takeNth([1,2,3,4,5], 2, function(item) {
 // 4
 ````
 
-* **takeStrict()** – take n elements only if at least n elements exists, oherwise throw an Error.
+* **takeStrict()** – take n elements only if at least n elements exists, oherwise throw an Error
 
 ````js
 var reversed = true;
@@ -253,7 +253,7 @@ var arr = itr.takeStrict([1,2,3,4,5,6,10], 5, reversed);
 console.log(arr); // [3,4,5,6,10]
 ````
         
-* **times()** – repeatedly call a function
+* **times()** – repeatedly call a function; call infinitely if the number of times is omitted
 
 ````js
 var arr = [];
