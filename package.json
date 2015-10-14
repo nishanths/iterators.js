@@ -1,15 +1,15 @@
 {
   "name": "iterators.js",
-  "version": "0.2.1",
+  "version": "0.2.5",
   "description": "Useful functional iterators",
   "main": "iterators.js",
   "directories": {
     "test": "test"
   },
   "devDependencies": {
-    "chai": "*",
+    "chai": "^3.3.0",
     "coveralls": "^2.11.4",
-    "mocha": "*",
+    "mocha": "^2.3.3",
     "mocha-lcov-reporter": "^1.0.0"
   },
   "scripts": {
