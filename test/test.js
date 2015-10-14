@@ -10,6 +10,7 @@ const distinct = itr.distinct;
 const cartesianProduct = itr.cartesianProduct;
 const groupBy = itr.groupBy;
 const imap = itr.imap;
+const iterate = itr.iterate;
 const slices = itr.slices;
 const subsets = itr.subsets;
 const takeNth = itr.takeNth;
@@ -114,6 +115,23 @@ describe('imap()', function () {
         }, null, [2,3,8], [0,4,6]);
 
         expect(arr).to.eql([2,5,10]);
+    });
+});
+
+// iterate
+
+describe('iterate()', function () {
+    var obj = {
+        multiplier: 10
+    };
+
+    it('successively applies the function to the value the correct number of times with the right context', function () {
+        var numTimes = 5;
+        var arr = iterate(1, numTimes, function(value) {
+            return value * this.multiplier;
+        }, obj);
+
+        expect(arr).to.eql([1,10,100,1000,10000]);
     });
 });
 
