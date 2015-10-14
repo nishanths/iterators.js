@@ -4,9 +4,11 @@ Useful functional iterators.
 
 Inspired by [JuliaLang/Iterators.jl](https://github.com/JuliaLang/Iterators.jl). 
 
-[![npm ver](https://img.shields.io/npm/v/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![downloads total](https://img.shields.io/npm/dt/iterators.js.svg)](https://www.npmjs.com/package/iterators.js)  [![travis ci](https://img.shields.io/travis/nishanths/iterators.js.svg)](https://travis-ci.org/nishanths/iterators.js)  [![license](https://img.shields.io/npm/l/iterators.js.svg)](https://github.com/nishanths/iterators.js/blob/master/LICENSE)
+[![npm ver](https://img.shields.io/npm/v/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![bower logo](https://img.shields.io/bower/v/iterators.js.svg)](http://bower.io/search/?q=iterators.js)  [![travis ci](https://img.shields.io/travis/nishanths/iterators.js.svg)](https://travis-ci.org/nishanths/iterators.js)  [![license](https://img.shields.io/npm/l/iterators.js.svg)](https://github.com/nishanths/iterators.js/blob/master/LICENSE)
 
 iterators.js is designed to be performant and to iterate as lazily as possible in most scenarios. It has no dependencies. Tests are available in the [`test/`](https://github.com/nishanths/iterators.js/tree/master/test) directory. Run `npm test` or `mocha` to execute tests.
+
+It is available on [npm](https://www.npmjs.com/package/iterators.js), [bower](http://bower.io/search/?q=iterators.js), and directly via [RawGit](https://rawgit.com/nishanths/iterators.js/master/iterators.js). 
 
 **Warning:** iterators.js requires some ES6 features such as [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set).
 
@@ -21,31 +23,27 @@ iterators.js is designed to be performant and to iterate as lazily as possible i
 
 # Install
 
-iterators.js is available on [npm](https://www.npmjs.com/package/iterators.js). 
-
 If you're using npm, simply add it to your project (and package.json) by running:
 
 ````bash
 $ npm install --save iterators.js
 ````
 
-If you're using [bower](http://bower.io), run:
+If you're using bower, run:
 
 ````bash
 $ bower install iterators.js
 ```` 
 
-Direct link for browsers (via RawGit):
+Direct link for browsers:
 
 ````html
-<script src="https://rawgit.com/nishanths/iterators.js/master/iterators.js"></script>
+<script type="text/javascript" src="https://rawgit.com/nishanths/iterators.js/master/iterators.js"></script>
 ````
-
-Alternatively, grab a [zip file](https://github.com/nishanths/iterators.js/archive/master.zip) of the repository.
 
 # Usage
 
-iterators.js works well both in node and in the browser.
+iterators.js works well both in node and the browser.
 
 #### Node
 
