@@ -20,16 +20,17 @@
 
     <section class="main-content">
       <h1>
-<a id="iteratorsjs" class="anchor" href="#iteratorsjs" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="">iterators.js</a>
-</h1>
+<a id="iteratorsjs" class="anchor" href="#iteratorsjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>iterators.js</h1>
 
 <p>Useful functional iterators. </p>
 
 <p>Inspired by <a href="https://github.com/JuliaLang/Iterators.jl">JuliaLang/Iterators.jl</a>. </p>
 
-<p><a href="https://www.npmjs.com/package/iterators.js"><img src="https://img.shields.io/npm/v/iterators.js.svg" alt="npm ver"></a> <a href="https://www.npmjs.com/package/iterators.js"><img src="https://img.shields.io/npm/dm/iterators.js.svg" alt="downloads total"></a> <a href="https://www.npmjs.com/package/iterators.js"><img src="https://img.shields.io/npm/dt/iterators.js.svg" alt="downloads total"></a>  <a href="https://travis-ci.org/nishanths/iterators.js"><img src="https://img.shields.io/travis/nishanths/iterators.js.svg" alt="travis ci"></a>  <a href="https://github.com/nishanths/iterators.js/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/iterators.js.svg" alt="license"></a></p>
+<p><a href="https://www.npmjs.com/package/iterators.js"><img src="https://img.shields.io/npm/v/iterators.js.svg" alt="npm ver"></a> <a href="http://bower.io/search/?q=iterators.js"><img src="https://img.shields.io/bower/v/iterators.js.svg" alt="bower logo"></a>  <a href="https://www.npmjs.com/package/iterators.js"><img src="https://img.shields.io/npm/dt/iterators.js.svg" alt="downloads total"></a> <a href="https://travis-ci.org/nishanths/iterators.js"><img src="https://img.shields.io/travis/nishanths/iterators.js.svg" alt="travis ci"></a>  <a href="https://github.com/nishanths/iterators.js/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/iterators.js.svg" alt="license"></a></p>
 
-<p>iterators.js is designed to be performant and to iterate as lazily as possible in most scenarios. It has no dependencies. Tests are available in the <code>test/</code> directory. Run <code>npm test</code> or <code>mocha</code> to execute tests.</p>
+<p>iterators.js is designed to be performant and to iterate as lazily as possible in most scenarios. It has no dependencies. Tests are available in the <a href="https://github.com/nishanths/iterators.js/tree/master/test"><code>test/</code></a> directory. Run <code>npm test</code> or <code>mocha</code> to execute tests.</p>
+
+<p>It is available on <a href="https://www.npmjs.com/package/iterators.js">npm</a>, <a href="http://bower.io/search/?q=iterators.js">bower</a>, and directly via <a href="https://rawgit.com/nishanths/iterators.js/master/iterators.js">RawGit</a>. </p>
 
 <p><strong>Warning:</strong> iterators.js requires some ES6 features such as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a>.</p>
 
@@ -48,29 +49,34 @@
 <h1>
 <a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h1>
 
-<p>iterators.js is available on <a href="https://www.npmjs.com/package/iterators.js">npm</a>. Installing is simple. Simply add it to your project (and package.json) by running:</p>
+<p>If you're using npm, simply add it to your project (and package.json) by running:</p>
 
 <div class="highlight highlight-source-shell"><pre>$ npm install --save iterators.js</pre></div>
 
-<p>To install globally, run: (you may need to use sudo)</p>
+<p>If you're using bower, run:</p>
 
-<div class="highlight highlight-source-shell"><pre>$ npm install -g iterators.js</pre></div>
+<div class="highlight highlight-source-shell"><pre>$ bower install iterators.js</pre></div>
 
-<p>Alternatively, grab a <a href="https://github.com/nishanths/iterators.js/archive/master.zip">zip file</a> of the repository.</p>
+<p>Direct link for browsers, minified:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://rawgit.com/nishanths/iterators.js/master/iterators.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
 
 <h1>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
 
-<p>In your JavaScript, <code>require</code> iterators.js.</p>
+<p>iterators.js works well both in node and the browser.</p>
+
+<h4>
+<a id="node" class="anchor" href="#node" aria-hidden="true"><span class="octicon octicon-link"></span></a>Node</h4>
+
+<p>Require 'iterators.js' in your JS file:</p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-c">// index.js</span>
 
 <span class="pl-k">var</span> itr <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>iterators.js<span class="pl-pds">'</span></span>);
-
 itr.distinct([<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>], <span class="pl-k">function</span>(<span class="pl-smi">item</span>) {
   <span class="pl-en">console</span>.<span class="pl-c1">log</span>(item);
-});
-</pre></div>
+});</pre></div>
 
 <p>Back at the terminal:</p>
 
@@ -79,10 +85,65 @@ itr.distinct([<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span 
 2
 3</pre></div>
 
+<h4>
+<a id="browser" class="anchor" href="#browser" aria-hidden="true"><span class="octicon octicon-link"></span></a>Browser</h4>
+
+<p>Load it in your browser. Set the <code>src</code> for iterators.js to either a local copy (you can get it from bower) or to the online copy on GitHub (served via RawGit).</p>
+
+<div class="highlight highlight-text-html-basic"><pre><span class="pl-c">&lt;!-- index.html --&gt;</span>
+
+&lt;<span class="pl-ent">html</span>&gt;
+&lt;<span class="pl-ent">head</span>&gt;
+  &lt;<span class="pl-ent">title</span>&gt;Example&lt;/<span class="pl-ent">title</span>&gt;
+&lt;/<span class="pl-ent">head</span>&gt;
+&lt;<span class="pl-ent">body</span>&gt;
+  Hello, world
+<span class="pl-s1">  &lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://rawgit.com/nishanths/iterators.js/master/iterators.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">  &lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>./main.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+&lt;/<span class="pl-ent">body</span>&gt;
+&lt;/<span class="pl-ent">html</span>&gt;</pre></div>
+
+<p>Use the <code>itr</code> global to access functions.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// main.js</span>
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(itr); <span class="pl-c">// Object {} </span>
+
+itr.distinct([<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>], <span class="pl-k">function</span>(<span class="pl-smi">item</span>) {
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(item);
+});
+
+<span class="pl-c">// 1</span>
+<span class="pl-c">// 2</span>
+<span class="pl-c">// 3</span></pre></div>
+
+<p><strong>Note on global variable conflicts:</strong> The previous <code>itr</code> variable can be retrieved by running <code>itr.noConflict()</code>. The function resets the <code>itr</code> variable back to its original value and returns a reference to the iterators.js's itr object which you can assign to the variable of your choosing.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> myItr <span class="pl-k">=</span> itr.noConflict(); 
+<span class="pl-c">// Previous itr is now restored</span>
+<span class="pl-c">// myItr can be used to access iterator.js's library functions</span></pre></div>
+
 <h1>
 <a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h1>
 
-<p>The <a href="https://github.com/nishanths/iterators.js/tree/master/test"><code>test/</code></a> directory is a great place for in-depth examples.</p>
+<ul>
+<li>
+<strong>count()</strong> – iterate from start to end (excluded) using the specified step</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> start <span class="pl-k">=</span> <span class="pl-c1">10</span>;
+<span class="pl-k">var</span> end <span class="pl-k">=</span> <span class="pl-c1">20</span>;
+<span class="pl-k">var</span> step <span class="pl-k">=</span> <span class="pl-c1">5</span>;
+
+itr.count(start, end, step, <span class="pl-k">function</span>(<span class="pl-smi">item</span>) {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(item);
+});
+
+<span class="pl-c">// 10</span>
+<span class="pl-c">// 12</span>
+<span class="pl-c">// 14</span>
+<span class="pl-c">// 16</span>
+<span class="pl-c">// 18</span></pre></div>
 
 <ul>
 <li>
@@ -90,7 +151,7 @@ itr.distinct([<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span 
 </ul>
 
 <div class="highlight highlight-source-js"><pre>itr.cycle([<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>], <span class="pl-c1">5</span>, <span class="pl-k">function</span>(<span class="pl-smi">item</span>) {
-    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(item)
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(item);
 });
 
 <span class="pl-c">// 1</span>
@@ -117,8 +178,8 @@ itr.distinct([<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span 
 <strong>cartesianProduct()</strong> - iterate cartesian product pairs</li>
 </ul>
 
-<div class="highlight highlight-source-js"><pre>itr.cartesianProduct([<span class="pl-c1">1</span>,<span class="pl-c1">2</span>], [<span class="pl-c1">3</span>,<span class="pl-c1">4</span>], <span class="pl-k">function</span>(<span class="pl-smi">a</span>, <span class="pl-smi">b</span>) {
-    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(a <span class="pl-k">*</span> b);
+<div class="highlight highlight-source-js"><pre>itr.cartesianProduct([<span class="pl-c1">1</span>,<span class="pl-c1">2</span>], [<span class="pl-c1">3</span>,<span class="pl-c1">4</span>], <span class="pl-k">function</span>(<span class="pl-smi">pair</span>) {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(pair[<span class="pl-c1">0</span>] <span class="pl-k">*</span> pair[<span class="pl-c1">1</span>]);
 });
 
 <span class="pl-c">// 3</span>
@@ -135,6 +196,34 @@ itr.distinct([<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span 
 <span class="pl-k">var</span> arr <span class="pl-k">=</span> itr.groupBy([<span class="pl-s"><span class="pl-pds">'</span>abc<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>gooey<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Gui<span class="pl-pds">'</span></span>], firstCharNormalizedCase);
 
 <span class="pl-en">console</span>.<span class="pl-c1">log</span>(arr); <span class="pl-c">// [ [ 'abc' ], [ 'gooey', 'Gui' ], [ 'foo' ] ]</span></pre></div>
+
+<ul>
+<li>
+<strong>imap()</strong> – applies a function to each element in the arrays and returns an array of results</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> self <span class="pl-k">=</span> <span class="pl-c1">null</span>;
+<span class="pl-k">var</span> <span class="pl-en">sum</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">a</span>,<span class="pl-smi">b</span>,<span class="pl-smi">c</span>) {
+  <span class="pl-k">return</span> a <span class="pl-k">+</span> b <span class="pl-k">+</span> c;
+};
+
+<span class="pl-k">var</span> arr <span class="pl-k">=</span> itr.imap(sum, self, [<span class="pl-c1">2</span>,<span class="pl-c1">3</span>,<span class="pl-c1">8</span>], [<span class="pl-c1">0</span>,<span class="pl-c1">4</span>,<span class="pl-c1">6</span>], [<span class="pl-c1">1</span>,<span class="pl-c1">3</span>,<span class="pl-c1">10</span>]);
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(arr); <span class="pl-c">// [3,10,24]</span></pre></div>
+
+<ul>
+<li>
+<strong>iterate()</strong> – successively applies a function to the value and returns an array of result</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> x <span class="pl-k">=</span> <span class="pl-c1">2</span>;
+<span class="pl-k">var</span> numTimes <span class="pl-k">=</span> <span class="pl-c1">3</span>;
+
+<span class="pl-k">var</span> arr <span class="pl-k">=</span> itr.iterate(x, numTimes, <span class="pl-k">function</span>(<span class="pl-smi">value</span>) {
+    <span class="pl-k">return</span> value <span class="pl-k">*</span> <span class="pl-c1">10</span>;
+});
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(arr); <span class="pl-c">// [2,20,200]</span></pre></div>
 
 <ul>
 <li>
@@ -182,7 +271,7 @@ arr.<span class="pl-c1">sort</span>(<span class="pl-k">function</span>(<span cla
 
 <ul>
 <li>
-<strong>takeStrict()</strong> – take n elements only if at least n elements exists, oherwise throw an Error.</li>
+<strong>takeStrict()</strong> – take n elements only if at least n elements exists, oherwise throw an Error</li>
 </ul>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> reversed <span class="pl-k">=</span> <span class="pl-c1">true</span>;
@@ -191,7 +280,7 @@ arr.<span class="pl-c1">sort</span>(<span class="pl-k">function</span>(<span cla
 
 <ul>
 <li>
-<strong>times()</strong> – repeatedly call a function</li>
+<strong>times()</strong> – repeatedly call a function; call infinitely if the number of times is omitted</li>
 </ul>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> arr <span class="pl-k">=</span> [];
@@ -209,15 +298,26 @@ itr.times(<span class="pl-c1">5</span>, <span class="pl-k">function</span>(<span
 <a id="functions" class="anchor" href="#functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Functions</h1>
 
 <ul>
+<li>count</li>
 <li>cycle</li>
 <li>distinct</li>
 <li>cartesianProduct</li>
 <li>groupBy</li>
+<li>imap</li>
+<li>iterate</li>
 <li>slices</li>
 <li>subsets</li>
 <li>takeNth</li>
 <li>takeStrict</li>
 <li>times</li>
+</ul>
+
+<h1>
+<a id="general-notes" class="anchor" href="#general-notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>General notes</h1>
+
+<ul>
+<li>The <a href="https://github.com/nishanths/iterators.js/tree/master/test"><code>test/</code></a> directory is a great place for in-depth examples.</li>
+<li>Functions also provide the option to specify a context (<code>this</code> value) for your callback function.</li>
 </ul>
 
 <h1>
