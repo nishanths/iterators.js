@@ -117,7 +117,7 @@ var myItr = itr.noConflict();
 ````js
 var start = 10;
 var end = 20;
-var step = 5;
+var step = 2;
 
 itr.count(start, end, step, function(item) {
     console.log(item);
