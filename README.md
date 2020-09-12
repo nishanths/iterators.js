@@ -1,16 +1,16 @@
 # iterators.js
 
-Useful functional iterators. 
+Useful iterators.
 
-Inspired by [JuliaLang/Iterators.jl](https://github.com/JuliaLang/Iterators.jl). 
+Inspired by [JuliaLang/Iterators.jl](https://github.com/JuliaLang/Iterators.jl).
 
 [![npm ver](https://img.shields.io/npm/v/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![bower logo](https://img.shields.io/bower/v/iterators.js.svg)](http://bower.io/search/?q=iterators.js)  [![downloads total](https://img.shields.io/npm/dt/iterators.js.svg)](https://www.npmjs.com/package/iterators.js) [![travis ci](https://img.shields.io/travis/nishanths/iterators.js.svg)](https://travis-ci.org/nishanths/iterators.js)  [![license](https://img.shields.io/npm/l/iterators.js.svg)](https://github.com/nishanths/iterators.js/blob/master/LICENSE)
 
-iterators.js is designed to be performant and to iterate as lazily as possible in most scenarios. It has no dependencies. Tests are available in the [`test/`](https://github.com/nishanths/iterators.js/tree/master/test) directory. Run `npm test` or `mocha` to execute tests.
+iterators.js has no dependencies. Tests are available in the [`test/`](https://github.com/nishanths/iterators.js/tree/master/test) directory. Run `npm test` or `mocha` to execute tests.
 
-It is available on [npm](https://www.npmjs.com/package/iterators.js), [bower](http://bower.io/search/?q=iterators.js), and directly via [RawGit](https://rawgit.com/nishanths/iterators.js/master/iterators.js). 
+It is available on [npm](https://www.npmjs.com/package/iterators.js), [bower](http://bower.io/search/?q=iterators.js), and directly via [RawGit](https://rawgit.com/nishanths/iterators.js/master/iterators.js).
 
-**Warning:** iterators.js requires some ES6 features such as [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set).
+**Warning:** iterators.js requires ES6 features such as [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set).
 
 # Contents
 
@@ -33,7 +33,7 @@ If you're using bower, run:
 
 ````bash
 $ bower install iterators.js
-```` 
+````
 
 Direct link for browsers, minified:
 
@@ -91,7 +91,7 @@ Use the `itr` global to access functions.
 ````js
 // main.js
 
-console.log(itr); // Object {} 
+console.log(itr); // Object {}
 
 itr.distinct([1, 2, 1, 2, 3], function(item) {
   console.log(item);
@@ -105,7 +105,7 @@ itr.distinct([1, 2, 1, 2, 3], function(item) {
 **Note on global variable conflicts:** The previous `itr` variable can be retrieved by running `itr.noConflict()`. The function resets the `itr` variable back to its original value and returns a reference to the iterators.js's itr object which you can assign to the variable of your choosing.
 
 ````js
-var myItr = itr.noConflict(); 
+var myItr = itr.noConflict();
 // Previous itr is now restored
 // myItr can be used to access iterator.js's library functions
 ````
@@ -252,7 +252,7 @@ var reversed = true;
 var arr = itr.takeStrict([1,2,3,4,5,6,10], 5, reversed);
 console.log(arr); // [3,4,5,6,10]
 ````
-        
+
 * **times()** – repeatedly call a function; call infinitely if the number of times is omitted
 
 ````js
